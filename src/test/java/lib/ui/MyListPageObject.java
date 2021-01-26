@@ -9,7 +9,8 @@ abstract public class MyListPageObject extends MainPageObject{
     protected static String
             FOLDER_BY_NAME_TPL,
             ARTICLE_BY_TITLE,
-            REMOVE_FROM_SAVE_BUTTON;
+            REMOVE_FROM_SAVE_BUTTON,
+            MAIN_MENU_BUTTON;
 
     private static String getFolderXpatchByName(String name_of_folder){
         return FOLDER_BY_NAME_TPL.replace("{FOLDER_NAME}", name_of_folder);

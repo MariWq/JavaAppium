@@ -85,7 +85,7 @@ public class Platform {
         mobileEmulation.put("userAgent", "Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19");
 
         ChromeOptions сhromeOptions = new ChromeOptions();
-        сhromeOptions.addArguments("window-size=340,640");
+        сhromeOptions.addArguments("window-size=360,640");
         сhromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
 
         return сhromeOptions;

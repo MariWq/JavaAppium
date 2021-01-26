@@ -6,10 +6,12 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 public class AuthorizationPageObject extends MainPageObject {
 
     private static final String
-        LOGIN_BUTTON = "xpath://body/div/a[text()='Log in']",
+        LOGIN_BUTTON = "css:#p-personal li a",//"xpath://body/div/a[text()='Log in']",
         LOGIN_INPUT = "css:input[name='wpName']",
         PASSWORD_INPUT = "css:input[name='wpPassword']",
-        SUBMIT_BUTTON = "css:button#wpLoginAttempt";
+        SUBMIT_BUTTON = "css:button#wpLoginAttempt",
+        MAIN_MENU_BUTTON = "css:#mw-mf-main-menu-button",
+        SKIP_BUTTON = "css:div #mw-input-skipReset"; //"#p-navigation li a.mw-ui-icon-minerva-home";
 
     public AuthorizationPageObject(RemoteWebDriver driver){
         super(driver);
@@ -47,6 +49,22 @@ public class AuthorizationPageObject extends MainPageObject {
         this.waitForElementAndClick(
                 SUBMIT_BUTTON,
                 "Cannot find and click submit auth button",
+                5
+        );
+    }
+
+    public void openMainMenu(){
+        this.waitForElementAndClick(
+                MAIN_MENU_BUTTON,
+                "Cannot find and click main menu button",
+                5
+        );
+    }
+
+    public void clickSkipButton(){
+        this.waitForElementAndClick(
+                SKIP_BUTTON,
+                "Cannot find and click skip button",
                 5
         );
     }

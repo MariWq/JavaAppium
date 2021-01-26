@@ -9,8 +9,9 @@ abstract public class NavigationUI extends MainPageObject{
 
     protected static String
         MY_LISTS_LINK,
-        OPEN_NAVIGATION;
-//= "xpath://android.widget.FrameLayout[@content-desc='My lists']";
+        OPEN_NAVIGATION,
+        WATCH_STAR_LIST;
+
     public NavigationUI(RemoteWebDriver driver){
         super(driver);
     }
@@ -40,5 +41,13 @@ abstract public class NavigationUI extends MainPageObject{
                     5
             );
         }
+    }
+
+    public void clickWatchList(){
+        this.waitForElementAndClick(
+                WATCH_STAR_LIST,
+                "Cannot find navigation button WatchList",
+                5
+        );
     }
 }

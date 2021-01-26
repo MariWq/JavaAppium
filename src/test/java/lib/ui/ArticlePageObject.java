@@ -128,14 +128,14 @@ abstract public class ArticlePageObject extends MainPageObject{
 
     public  void remoweArticleFromSavedIfItAdded(){
 
-        if (this.isElementPresent(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON)){
+        if (this.isElementPresent(OPTIONS_ADD_TO_MY_LIST_BUTTON)){
             this.waitForElementAndClick(
-                    OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
+                    OPTIONS_ADD_TO_MY_LIST_BUTTON,
                     "Cannot click button to remove",
                     5
             );
             this.waitForElementPresentBy(
-                    OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
+                    OPTIONS_ADD_TO_MY_LIST_BUTTON,
                     "Cannot click button to add an article",
                     5
             );

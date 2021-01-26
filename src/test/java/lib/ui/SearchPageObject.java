@@ -1,7 +1,5 @@
 package lib.ui;
 
-import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 abstract public class SearchPageObject extends MainPageObject{
@@ -13,7 +11,8 @@ abstract public class SearchPageObject extends MainPageObject{
         SEARCH_RESULT_BY_SUBSTRING_TPL,
         SEARCH_LIST,
         SEARCH_ARTICLE_NAME,
-        SEARCH_EMPTY_RESULT_ELEMENT;
+        SEARCH_EMPTY_RESULT_ELEMENT,
+        SEARCH_WATCH_STAR;
 
     public SearchPageObject(RemoteWebDriver driver){
         super(driver);
@@ -26,6 +25,10 @@ abstract public class SearchPageObject extends MainPageObject{
 
     private static String getTitleName(String article_name){
         return SEARCH_ARTICLE_NAME.replace("{ARTICLENAME}", article_name);
+    }
+
+    private static String getArticleWatchStar(String article_name){
+        return SEARCH_WATCH_STAR.replace("{ARTICLENAME}", article_name);
     }
     /*TEMPLATES METHODS*/
 
@@ -50,6 +53,12 @@ abstract public class SearchPageObject extends MainPageObject{
                 5);
         this.waitForElementPresentBy(getResultSearchElement(description),
                 "Cannot find title description " + description,
+                5);
+    }
+
+    public void setWatchStarForArticle(String article_name){
+        this.waitForElementPresentBy(getTitleName(article_name),
+                "Cannot find title article " + article_name,
                 5);
     }
 

@@ -29,7 +29,26 @@ public class MyListTests extends CoreTestCase {
         ArticlePageObject.waitForTitleElement();
         String article_title = ArticlePageObject.getArticleTitle();
         String name_of_folder = "Test folder";
-        ArticlePageObject.addArticleToMylist(name_of_folder);
+        System.out.println(article_title);
+
+        if(Platform.getInstance().isAndroid()){
+            ArticlePageObject.addArticleToMylist(name_of_folder);
+        }else {
+            ArticlePageObject.addArticlesToMySaved();
+        }
+        if(Platform.getInstance().isIMw()){
+            AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
+            Auth.clickAuthButton();
+            Auth.enterLoginData(login, password);
+            Auth.submitForm();
+
+            ArticlePageObject.waitForTitleElement();
+
+            assertEquals("We are not on the same page after login",
+                    article_title,
+                    ArticlePageObject.getArticleTitle());
+        }
+
         ArticlePageObject.closeArticle();
 
         SearchPageObject.initSearchInput();
@@ -39,7 +58,25 @@ public class MyListTests extends CoreTestCase {
         ArticlePageObject ArticlePageObjectTwo = ArticlePageObjectFactory.get(driver);
         ArticlePageObjectTwo.waitForTitleElement();
         String articleTwo_title = ArticlePageObjectTwo.getArticleTitle();
-        ArticlePageObjectTwo.addOneArticleMyTolist(name_of_folder);
+
+        if(Platform.getInstance().isAndroid()){
+            ArticlePageObject.addArticleToMylist(name_of_folder);
+        }else {
+            ArticlePageObject.addArticlesToMySaved();
+        }
+        if(Platform.getInstance().isIMw()){
+            AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
+            Auth.clickAuthButton();
+            Auth.enterLoginData(login, password);
+            Auth.submitForm();
+
+            ArticlePageObject.waitForTitleElement();
+
+            assertEquals("We are not on the same page after login",
+                    articleTwo_title,
+                    ArticlePageObject.getArticleTitle());
+        }
+       // ArticlePageObjectTwo.addOneArticleMyTolist(name_of_folder);
         ArticlePageObject.closeArticle();
 
         NavigationUI NavigationUI = NavigationUIFactory.get(driver);
@@ -101,4 +138,39 @@ public class MyListTests extends CoreTestCase {
         MyListPageObject.openFolderByName(name_of_folder);
         MyListPageObject.swipeByArticleToDelete(article_title);
     }
+
+    @Test
+    public void testSaveTwoArticlesToListAndDeleteOne() { // задание ex17
+
+        //авторизация
+        AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
+        if(Platform.getInstance().isIMw()){
+
+            Auth.openMainMenu();
+            Auth.clickAuthButton();
+
+            Auth.enterLoginData(login, password);
+            Auth.submitForm();
+            Auth.clickSkipButton();
+        }
+
+        //поиск статей
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
+
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Java");
+
+        //отметить 2 статьи в избранное по description
+        SearchPageObject.setWatchStarForArticle("Indonesian island");
+        SearchPageObject.setWatchStarForArticle("High-level programming language");
+        SearchPageObject.clickCancelSearch();
+
+        //открыть список статей и убрать звездочку с одной из них
+        Auth.openMainMenu();
+        NavigationUI NavigationUI = NavigationUIFactory.get(driver);
+        NavigationUI.clickWatchList();
+
+        MyListPageObject MyListPageObject = MyListsPageObjectFactory.get(driver);
+        MyListPageObject.swipeByArticleToDelete("Java");
+        }
 }
