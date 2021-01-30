@@ -28,6 +28,7 @@ public class Platform {
     }
 
     public RemoteWebDriver getDriver() throws Exception{
+       // return new ChromeDriver(this.getMwChromeOptions());
         URL URL = new URL(APPIUM_URL);
         if(this.isAndroid()){
             return new AndroidDriver(URL, this.getAndroidDesiredCapabilities());

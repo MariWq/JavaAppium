@@ -1,6 +1,7 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import lib.Platform;
 import lib.ui.factories.MyListsPageObjectFactory;
 import org.openqa.selenium.WebElement;
@@ -22,14 +23,17 @@ abstract public class ArticlePageObject extends MainPageObject{
         super(driver);
     }
 
+    @Step("Waiting for title on the article page")
     public WebElement waitForTitleElement(){
         return this.waitForElementPresentBy(TITLE,
                 "Cannot find article title on page",
                 5);
     }
 
+    @Step("Get article titele")
     public String getArticleTitle() {
         WebElement title_element = waitForTitleElement();
+        screenshot(this.takeScreenshot("article_title"));
         if (Platform.getInstance().isAndroid()) {
             return title_element.getText();
         } else if(Platform.getInstance().isIOS()){

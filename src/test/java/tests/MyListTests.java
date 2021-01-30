@@ -7,6 +7,7 @@ import lib.ui.factories.ArticlePageObjectFactory;
 import lib.ui.factories.MyListsPageObjectFactory;
 import lib.ui.factories.NavigationUIFactory;
 import lib.ui.factories.SearchPageObjectFactory;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class MyListTests extends CoreTestCase {
@@ -44,7 +45,7 @@ public class MyListTests extends CoreTestCase {
 
             ArticlePageObject.waitForTitleElement();
 
-            assertEquals("We are not on the same page after login",
+            Assert.assertEquals("We are not on the same page after login",
                     article_title,
                     ArticlePageObject.getArticleTitle());
         }
@@ -72,7 +73,7 @@ public class MyListTests extends CoreTestCase {
 
             ArticlePageObject.waitForTitleElement();
 
-            assertEquals("We are not on the same page after login",
+            Assert.assertEquals("We are not on the same page after login",
                     articleTwo_title,
                     ArticlePageObject.getArticleTitle());
         }
@@ -86,7 +87,7 @@ public class MyListTests extends CoreTestCase {
         MyListPageObject.openFolderByName(name_of_folder);
         MyListPageObject.swipeByArticleToDelete(article_title);
 
-        assertEquals("Article title is't JavaScript ",
+        Assert.assertEquals("Article title is't JavaScript ",
                 articleTwo_title,
                 "JavaScript");
     }
@@ -117,7 +118,7 @@ public class MyListTests extends CoreTestCase {
 
             ArticlePageObject.waitForTitleElement();
 
-            assertEquals("We are not on the same page after login",
+            Assert.assertEquals("We are not on the same page after login",
                     article_title,
                     ArticlePageObject.getArticleTitle());
         }

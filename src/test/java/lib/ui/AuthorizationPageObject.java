@@ -1,6 +1,5 @@
 package lib.ui;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class AuthorizationPageObject extends MainPageObject {

@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.ui.ArticlePageObject;
 import lib.ui.SearchPageObject;
@@ -7,9 +9,14 @@ import lib.ui.factories.ArticlePageObjectFactory;
 import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 
+@Epic("Tests for search")
 public class SearchTests extends CoreTestCase {
 
-    @Test
+  @Test
+    @Features(value = {@Feature(value="Search")})
+    @Description("Test search text")
+    @Step("Starting test testCancelSearchText")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void testCancelSearchText() { //задание ex3
 
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
@@ -20,6 +27,10 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value="Search")})
+    @Description("Test check page title")
+    @Step("Starting test testCheckPageTitle")
+    @Severity(value = SeverityLevel.MINOR)
     public void testCheckPageTitle() { //задание ex6
 
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
@@ -32,6 +43,10 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value="Search")})
+    @Description("Search three title of search")
+    @Step("Search test testCheckTitleAndDescriptionOfArticle")
+    @Severity(value = SeverityLevel.MINOR)
     public void testCheckTitleAndDescriptionOfArticle(){ // ex9
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
@@ -43,6 +58,10 @@ public class SearchTests extends CoreTestCase {
 
 
     @Test
+    @Features(value = {@Feature(value="Search")})
+    @Description("Test cansel search")
+    @Step("Starting test testCancelSearch")
+    @Severity(value = SeverityLevel.MINOR)
     public void testCancelSearch() {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
@@ -50,11 +69,10 @@ public class SearchTests extends CoreTestCase {
         SearchPageObject.waitElementList();
         SearchPageObject.clickCancelSearch();
     }
-
-    @Test
+   /* @Test
     public void testSearchByWord() {
 
-        /*MainPageObject.waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search Wikipedia')]"),
+        *//*MainPageObject.waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search Wikipedia')]"),
                 "Java",
                 "Cannot send keys to search input",
                 5);
@@ -64,6 +82,6 @@ public class SearchTests extends CoreTestCase {
                     "Java",
                     "Cannot find text 'Java'",
                     5);
-        }*/
-    }
+        }*//*
+    }*/
 }
